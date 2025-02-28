@@ -44,3 +44,24 @@ export const getPokemonById = createAsyncThunk(
     }
   }
 );
+
+
+export const getPokemonByName = createAsyncThunk(
+  "/pokemon/:name",
+
+  async (data: any, { rejectWithValue, getState }) => {
+    try {
+      const response = await apiConnector(
+        "get",
+        `/pokemon/${data}`,
+        null,
+        {},
+        null
+      );
+      return response.data;
+    } catch (error: any) {
+      return rejectWithValue(error.response?.data);
+    }
+  }
+);
+
