@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-import { apiConnector } from "@/lib/apiConnector";
+import { apiConnector } from "@/lib/api-connector";
 
 // store/slices/pokemon-slice.ts
 

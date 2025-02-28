@@ -35,7 +35,7 @@ const FeaturedPokemonCard: React.FC<FeaturedPokemonProps> = ({
   pokemon,
   isTransitioning,
 }) => {
-  const topStats = pokemon.stats
+  const topStats = [...pokemon.stats]
     .sort((a, b) => b.base_stat - a.base_stat)
     .slice(0, 3);
 

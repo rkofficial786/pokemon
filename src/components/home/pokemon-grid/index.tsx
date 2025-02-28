@@ -14,7 +14,6 @@ import LoadingSkeleton from "@/components/ui/loading-skeleton";
 import ErrorMessage from "./error";
 import NoResults from "./not-found";
 import Grid from "./grid";
-import LoadMoreButton from "./load-more";
 
 const detailsCache: Record<number, Pokemon> = {};
 
@@ -178,9 +177,9 @@ const PokemonExplorer = () => {
   };
 
   return (
-    <section className="py-16 bg-gray-900">
+    <section id="explore" className="py-16 bg-gray-900">
       <div className="container mx-auto px-4">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+        <div className="flex flex-col md:flex-row justify-between  md:items-center mb-8 gap-4">
           <h2 className="text-3xl font-bold text-gray-100 text-center md:text-left">
             Pokémon Collection
           </h2>
@@ -244,10 +243,6 @@ const PokemonExplorer = () => {
               <div className="w-8 h-8 border-4 border-red-600 border-t-transparent rounded-full animate-spin"></div>
             </div>
           )}
-
-        {!activeSearch && detailedPokemon.length < totalCount && (
-          <LoadMoreButton onClick={loadMore} isLoading={isAnyLoading} />
-        )}
       </div>
     </section>
   );

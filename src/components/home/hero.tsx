@@ -1,6 +1,7 @@
 "use client";
 
 import { useIntersectionObserver } from "@/hooks/use-intersection";
+import Link from "next/link";
 
 const Hero = () => {
   const [isVisible, ref] = useIntersectionObserver({ threshold: 0.1 });
@@ -33,12 +34,17 @@ const Hero = () => {
             Pokédex. Search, filter, and learn about all your favorite Pokémon.
           </p>
           <div className="flex gap-4">
-            <button className="px-6 py-3 bg-red-600 text-white rounded-full hover:bg-red-700 transition-colors shadow-md shadow-red-500/20">
-              Explore Now
-            </button>
-            <button className="px-6 py-3 bg-gray-800 text-white rounded-full hover:bg-gray-700 transition-colors border border-gray-700">
-              Random Pokémon
-            </button>
+            <Link href={"#explore"}>
+              <button className="px-6 py-3 bg-red-600 text-white rounded-full hover:bg-red-700 transition-colors shadow-md shadow-red-500/20">
+                Explore Now
+              </button>
+            </Link>
+
+            <Link href={"#featured"}>
+              <button className="px-6 py-3 bg-gray-800 text-white rounded-full hover:bg-gray-700 transition-colors border border-gray-700">
+                Random Pokémon
+              </button>
+            </Link>
           </div>
         </div>
       </div>

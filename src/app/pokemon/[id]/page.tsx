@@ -17,7 +17,7 @@ const PokemonDetailPage = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const { selectedPokemon, isLoading, error } = useAppSelector(
-    (state) => state.pokemon
+    (state: any) => state.pokemon
   );
   const [activeTab, setActiveTab] = useState("stats");
 
@@ -27,7 +27,6 @@ const PokemonDetailPage = () => {
     }
   }, [dispatch, id]);
 
-  // Handle back navigation
   const handleBack = () => {
     router.back();
   };
@@ -63,30 +62,26 @@ const PokemonDetailPage = () => {
     );
   }
 
-  // Get primary type and its color
   const mainType = selectedPokemon.types[0]?.type?.name || "normal";
   const typeColor = typeToColor[mainType] || typeToColor.normal;
 
   return (
     <div className="min-h-screen bg-gray-900 py-8">
       <div className="container mx-auto px-4">
-        {/* Back Button */}
         <button
           onClick={handleBack}
-          className="flex items-center text-gray-300 hover:text-white mb-6 transition-colors"
+          className="flex items-center text-gray-300 hover:text-white mb-6 transition-colors cursor-pointer"
         >
           <ArrowLeftIcon className="w-5 h-5 mr-2" />
           Back to Pokédex
         </button>
 
         <div className="max-w-6xl mx-auto">
-          {/* Hero Section */}
           <PokemonDetailHeader
             pokemon={selectedPokemon}
             typeColor={typeColor}
           />
 
-          {/* Tabs Section */}
           <DetailTabs
             pokemon={selectedPokemon}
             activeTab={activeTab}

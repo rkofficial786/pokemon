@@ -28,7 +28,7 @@ const SearchBar = ({
             type="text"
             value={value}
             onChange={(e) => onChange(e.target.value)}
-            placeholder="Search Pokémon..."
+            placeholder="Enter Pokemon's full name"
             className="w-full bg-gray-800 border border-gray-700 rounded-l-lg py-2 pl-10 pr-3 text-gray-200 focus:outline-none focus:ring-1 focus:ring-red-500"
           />
           {value && (

@@ -25,16 +25,8 @@ const Featured = () => {
 
       try {
         const pokemonPromises = popularPokemonIds.map(async (id) => {
-          const response = await fetch(
-            `https://pokeapi.co/api/v2/pokemon/${id}`
-          );
-          // const { payload } = await dispatch(getPokemonById(id));
-          // console.log(payload,"payload id ka h");
+          const { payload: data } = await dispatch(getPokemonById(id));
 
-          // const data = payload;
-          const data = await response.json();
-
-          // Extract the main type for color selection
           const mainType = data.types[0].type.name;
 
           return {
@@ -86,7 +78,7 @@ const Featured = () => {
   };
 
   return (
-    <section className="py-8 md:py-16">
+    <section id="featured" className="py-8 md:py-16">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-center gap-2 mb-8 md:mb-12">
           <SparklesIcon className="w-5 h-5 md:w-6 md:h-6 text-yellow-400" />
