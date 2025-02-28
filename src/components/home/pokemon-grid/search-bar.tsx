@@ -1,5 +1,4 @@
-// components/ui/search-bar.tsx
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/24/solid";
 
 interface SearchBarProps {
@@ -9,16 +8,21 @@ interface SearchBarProps {
   isSearching: boolean;
 }
 
-export default function SearchBar({ value, onChange, onSearch, isSearching }: SearchBarProps) {
+const SearchBar = ({
+  value,
+  onChange,
+  onSearch,
+  isSearching,
+}: SearchBarProps) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     onSearch(value);
   };
 
   return (
-    <div className="w-full md:w-auto flex-grow">
+    <div className="w-full md:w-auto flex-grow md:flex-grow-0">
       <form onSubmit={handleSubmit} className="flex">
-        <div className="relative flex-grow">
+        <div className="relative flex-grow md:flex-grow-0">
           <MagnifyingGlassIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
           <input
             type="text"
@@ -51,4 +55,6 @@ export default function SearchBar({ value, onChange, onSearch, isSearching }: Se
       </form>
     </div>
   );
-}
+};
+
+export default SearchBar;

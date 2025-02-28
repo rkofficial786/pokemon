@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useIntersectionObserver } from "@/hooks/use-intersection";
 
 const Hero = () => {
@@ -8,10 +7,8 @@ const Hero = () => {
 
   return (
     <section className="relative h-[500px] overflow-hidden">
-      {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-purple-900 via-gray-900 to-blue-900" />
 
-      {/* Pokemon silhouettes */}
       <div className="absolute bottom-0 right-0 opacity-20">
         <img
           src="/images/pokemon.png"
@@ -21,7 +18,6 @@ const Hero = () => {
         />
       </div>
 
-      {/* Content */}
       <div className="container mx-auto px-4 h-full flex items-center relative z-10">
         <div
           ref={ref}

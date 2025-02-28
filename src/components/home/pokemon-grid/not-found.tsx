@@ -1,12 +1,12 @@
-// components/ui/no-results.tsx
-import React from 'react';
+
+import React from "react";
 
 interface NoResultsProps {
   searchActive: boolean;
   onClearSearch: () => void;
 }
 
-export default function NoResults({ searchActive, onClearSearch }: NoResultsProps) {
+const NoResults = ({ searchActive, onClearSearch }: NoResultsProps) => {
   return (
     <div className="text-center py-20">
       <p className="text-2xl text-gray-400 mb-4">No Pokémon found</p>
@@ -21,4 +21,6 @@ export default function NoResults({ searchActive, onClearSearch }: NoResultsProp
       )}
     </div>
   );
-}
+};
+
+export default NoResults;

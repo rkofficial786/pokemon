@@ -1,5 +1,4 @@
-// components/ui/search-notification.tsx
-import React from 'react';
+import React from "react";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 
 interface SearchNotificationProps {
@@ -7,11 +6,15 @@ interface SearchNotificationProps {
   onClear: () => void;
 }
 
-export default function SearchNotification({ searchTerm, onClear }: SearchNotificationProps) {
+const SearchNotification = ({
+  searchTerm,
+  onClear,
+}: SearchNotificationProps) => {
   return (
     <div className="bg-gray-800 border border-gray-700 rounded-lg p-4 mb-6 flex justify-between items-center">
       <p className="text-gray-300">
-        Showing results for "<span className="text-white font-semibold">{searchTerm}</span>"
+        Showing results for "
+        <span className="text-white font-semibold">{searchTerm}</span>"
       </p>
       <button
         onClick={onClear}
@@ -21,4 +24,6 @@ export default function SearchNotification({ searchTerm, onClear }: SearchNotifi
       </button>
     </div>
   );
-}
+};
+
+export default SearchNotification;

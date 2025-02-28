@@ -10,12 +10,12 @@ interface PokemonGridProps {
   skeletonStartIndex: number;
 }
 
-export default function Grid({
+const Grid = ({
   pokemon,
   isLoading,
   skeletonCount,
   skeletonStartIndex,
-}: PokemonGridProps) {
+}: PokemonGridProps) => {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
       {pokemon.map((pokemon) => (
@@ -30,4 +30,5 @@ export default function Grid({
       )}
     </div>
   );
-}
+};
+export default Grid;

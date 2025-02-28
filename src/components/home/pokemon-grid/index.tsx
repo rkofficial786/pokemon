@@ -1,4 +1,3 @@
-
 "use client";
 import { useEffect, useState, useCallback, useRef } from "react";
 import { useInfiniteScroll } from "@/hooks/use-infinite-scroll";
@@ -17,10 +16,9 @@ import NoResults from "./not-found";
 import Grid from "./grid";
 import LoadMoreButton from "./load-more";
 
-// Simple in-memory cache
 const detailsCache: Record<number, Pokemon> = {};
 
-export default function PokemonExplorer() {
+const PokemonExplorer = () => {
   const dispatch = useAppDispatch();
   const { list, isLoading, error, totalCount } = useAppSelector(
     (state) => state.pokemon
@@ -36,14 +34,12 @@ export default function PokemonExplorer() {
 
   const isFetchingDetailsRef = useRef(false);
 
-  // Initial data fetch
   useEffect(() => {
     if (list.length === 0 && !activeSearch) {
       dispatch(getAllPokemon({ limit: 20, offset: 0 }));
     }
   }, [dispatch, list.length, activeSearch]);
 
-  // Process raw Pokemon data from API
   const processRawPokemonData = (data: any): Pokemon => {
     return {
       id: data.id,
@@ -57,7 +53,6 @@ export default function PokemonExplorer() {
     };
   };
 
-  // Handle search
   const handleSearch = async (term: string) => {
     if (!term.trim()) {
       clearSearch();
@@ -88,7 +83,6 @@ export default function PokemonExplorer() {
     }
   };
 
-  // Clear the search
   const clearSearch = () => {
     setSearchTerm("");
     setActiveSearch("");
@@ -96,20 +90,16 @@ export default function PokemonExplorer() {
     setSearchError(null);
   };
 
-  // Fetch detailed data for each Pokemon in the list
   useEffect(() => {
     async function fetchPokemonDetails() {
-      // Skip if searching or already loading
       if (activeSearch || isFetchingDetailsRef.current) return;
 
-      // Skip if no new Pokemon to fetch
       if (list.length === 0 || detailedPokemon.length >= list.length) return;
 
       isFetchingDetailsRef.current = true;
       setIsLoadingDetails(true);
 
       try {
-        // Get Pokemon that need details
         const pokemonToFetch = list.slice(detailedPokemon.length);
         const uncachedIds = pokemonToFetch
           .map((pokemon) =>
@@ -117,7 +107,6 @@ export default function PokemonExplorer() {
           )
           .filter((id) => !detailsCache[id]);
 
-        // Fetch details for uncached Pokemon
         await Promise.all(
           uncachedIds.map(async (id) => {
             const { payload }: any = await dispatch(getPokemonById(id));
@@ -125,7 +114,6 @@ export default function PokemonExplorer() {
           })
         );
 
-        // Update detailed Pokemon from cache
         const newDetails = pokemonToFetch
           .map((pokemon) => {
             const id = parseInt(
@@ -153,7 +141,6 @@ export default function PokemonExplorer() {
     fetchPokemonDetails();
   }, [list, detailedPokemon.length, activeSearch, dispatch]);
 
-  // Load more Pokemon
   const loadMore = useCallback(() => {
     if (
       activeSearch ||
@@ -175,20 +162,16 @@ export default function PokemonExplorer() {
     activeSearch,
   ]);
 
-  // Infinite scroll setup
   const infiniteScrollTriggerRef = useInfiniteScroll(
     activeSearch ? () => {} : loadMore
   );
 
-  // Data source selection
   const dataSource = activeSearch ? searchResults : detailedPokemon;
 
-  // Loading states
   const isFullyLoading = isLoading && list.length === 0 && !activeSearch;
   const isPartiallyLoading = (isLoading || isLoadingDetails) && !activeSearch;
   const isAnyLoading = isFullyLoading || isPartiallyLoading || isSearching;
 
-  // Handle reload
   const handleReload = () => {
     dispatch(getAllPokemon({ limit: 20, offset: 0 }));
     setDetailedPokemon([]);
@@ -197,13 +180,11 @@ export default function PokemonExplorer() {
   return (
     <section className="py-16 bg-gray-900">
       <div className="container mx-auto px-4">
-        {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
-          <h2 className="text-3xl font-bold text-gray-100">
+          <h2 className="text-3xl font-bold text-gray-100 text-center md:text-left">
             Pokémon Collection
           </h2>
 
-          {/* Search Section */}
           <SearchBar
             value={searchTerm}
             onChange={setSearchTerm}
@@ -212,12 +193,10 @@ export default function PokemonExplorer() {
           />
         </div>
 
-        {/* Active search notification */}
         {activeSearch && (
           <SearchNotification searchTerm={activeSearch} onClear={clearSearch} />
         )}
 
-        {/* Count display */}
         <div className="mb-6 text-gray-400 flex items-center justify-end">
           <p>
             Showing {dataSource.length} {activeSearch ? "result" : "Pokémon"}
@@ -225,7 +204,6 @@ export default function PokemonExplorer() {
           </p>
         </div>
 
-        {/* Loading skeleton */}
         {isFullyLoading || isSearching ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
             <LoadingSkeleton count={20} />
@@ -256,7 +234,6 @@ export default function PokemonExplorer() {
           />
         )}
 
-        {/* Infinite scroll trigger */}
         {!activeSearch &&
           !isAnyLoading &&
           detailedPokemon.length < totalCount && (
@@ -268,11 +245,11 @@ export default function PokemonExplorer() {
             </div>
           )}
 
-        {/* Load more button */}
         {!activeSearch && detailedPokemon.length < totalCount && (
           <LoadMoreButton onClick={loadMore} isLoading={isAnyLoading} />
         )}
       </div>
     </section>
   );
-}
+};
+export default PokemonExplorer;

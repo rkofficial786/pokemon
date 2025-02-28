@@ -6,7 +6,7 @@ interface PokemonCardProps {
   pokemon: Pokemon;
 }
 
-const typeColors: Record<string, string> = {
+const typeColors: any = {
   normal: "#A8A878",
   fire: "#F08030",
   water: "#6890F0",
@@ -30,7 +30,7 @@ const typeColors: Record<string, string> = {
 export default function PokemonCard({ pokemon }: PokemonCardProps) {
   const [isHovered, setIsHovered] = useState(false);
 
-  const mainType = pokemon.types[0] || "normal";
+  const mainType: any = pokemon.types[0] || "normal";
   const backgroundColor = typeColors[mainType] || "#A8A878";
 
   const spriteUrl =
@@ -95,7 +95,7 @@ export default function PokemonCard({ pokemon }: PokemonCardProps) {
           </h3>
 
           <div className="flex justify-center gap-2 mb-3">
-            {pokemon.types?.map((type) => (
+            {pokemon.types?.map((type: any) => (
               <span
                 key={type}
                 className="px-3 py-1 rounded-full text-white text-xs font-medium capitalize"

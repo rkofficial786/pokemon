@@ -1,4 +1,4 @@
-// components/ui/load-more-button.tsx
+
 import React from 'react';
 
 interface LoadMoreButtonProps {
@@ -6,7 +6,7 @@ interface LoadMoreButtonProps {
   isLoading: boolean;
 }
 
-export default function LoadMoreButton({ onClick, isLoading }: LoadMoreButtonProps) {
+ const LoadMoreButton =({ onClick, isLoading }: LoadMoreButtonProps) => {
   return (
     <div className="text-center mt-8">
       <button
@@ -26,3 +26,5 @@ export default function LoadMoreButton({ onClick, isLoading }: LoadMoreButtonPro
     </div>
   );
 }
+
+export default LoadMoreButton

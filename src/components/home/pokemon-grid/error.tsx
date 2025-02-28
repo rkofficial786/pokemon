@@ -1,5 +1,4 @@
-// components/ui/error-message.tsx
-import React from 'react';
+import React from "react";
 
 interface ErrorMessageProps {
   message: string;
@@ -7,11 +6,11 @@ interface ErrorMessageProps {
   onButtonClick: () => void;
 }
 
-export default function ErrorMessage({ 
-  message, 
-  buttonText, 
-  onButtonClick 
-}: ErrorMessageProps) {
+const ErrorMessage = ({
+  message,
+  buttonText,
+  onButtonClick,
+}: ErrorMessageProps) => {
   return (
     <div className="bg-red-900/30 border border-red-700 rounded-lg p-6 text-center">
       <p className="text-red-400">{message}</p>
@@ -23,4 +22,5 @@ export default function ErrorMessage({
       </button>
     </div>
   );
-}
+};
+export default ErrorMessage;
