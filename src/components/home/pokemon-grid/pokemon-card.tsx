@@ -70,7 +70,7 @@ export default function PokemonCard({ pokemon }: PokemonCardProps) {
 
           <div
             className={`relative z-10 w-24 h-24 transition-transform duration-300 ${
-              isHovered ? "scale-110 -rotate-8" : ""
+              isHovered ? "scale-180 -rotate-8" : ""
             }`}
           >
             <img
