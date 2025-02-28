@@ -52,7 +52,7 @@ interface BasicInfoGridProps {
 
 const BasicInfoGrid: React.FC<BasicInfoGridProps> = ({ pokemon }) => {
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+    <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
       <InfoCard
         icon={<ArrowsUpDownIcon className="w-4 h-4" />}
         label="Height"

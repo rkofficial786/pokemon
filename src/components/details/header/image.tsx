@@ -1,9 +1,8 @@
-
 import { Pokemon } from "@/types/pokemon";
 import React from "react";
 
 interface PokemonImageSectionProps {
-  pokemon: Pokemon; 
+  pokemon: Pokemon;
   typeColor: {
     bg: string;
     text: string;
@@ -68,7 +67,7 @@ const SpriteGallery: React.FC<SpriteGalleryProps> = ({ pokemon }) => {
   ];
 
   return (
-    <div className="flex gap-4 mt-6">
+    <div className="grid w-full grid-cols-2 sm:grid-cols-4 gap-4 mt-6">
       {spriteTypes.map(
         (sprite) =>
           pokemon.sprites?.[sprite.key] && (
@@ -97,8 +96,12 @@ const SpriteItem: React.FC<SpriteItemProps> = ({
 }) => {
   return (
     <div className="bg-black/20 backdrop-blur-sm rounded-lg p-2">
-      <div className="w-16 h-16 relative">
-        <img src={spriteUrl} alt={altText} className="object-contain" />
+      <div className="w-full sm:w-16 sm:h-16 relative">
+        <img
+          src={spriteUrl}
+          alt={altText}
+          className="object-contain w-full h-full"
+        />
       </div>
       <p className="text-xs text-center mt-1 text-white/80">{label}</p>
     </div>
