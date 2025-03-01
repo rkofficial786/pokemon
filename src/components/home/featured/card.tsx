@@ -7,7 +7,7 @@ import {
   BoltIcon,
   ArrowRightIcon,
 } from "@heroicons/react/24/solid";
-import { formatName } from "@/app/helpers/helper";
+import { formatName } from "@/helpers/helper";
 import TopStats from "./top-stats";
 
 interface PokemonStat {

@@ -1,5 +1,5 @@
 import React from "react";
-import { formatName } from "@/app/helpers/helper";
+import { formatName } from "@/helpers/helper";
 import { AbilityInfo } from "@/types/pokemon";
 
 interface AbilitiesCardProps {

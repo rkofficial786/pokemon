@@ -55,7 +55,7 @@ const MainPokemonImage: React.FC<MainPokemonImageProps> = ({
 };
 
 interface SpriteGalleryProps {
-  pokemon: any;
+  pokemon: Pokemon;
 }
 
 const SpriteGallery: React.FC<SpriteGalleryProps> = ({ pokemon }) => {
@@ -95,12 +95,14 @@ const SpriteItem: React.FC<SpriteItemProps> = ({
   label,
 }) => {
   return (
-    <div className="bg-black/20 backdrop-blur-sm rounded-lg p-2">
-      <div className="w-full sm:w-16 sm:h-16 relative">
+    <div className="bg-black/20 backdrop-blur-sm rounded-lg p-2 flex flex-col items-center">
+      <div className="w-20 h-20 flex items-center justify-center">
         <img
           src={spriteUrl}
           alt={altText}
-          className="object-contain w-full h-full"
+          width={64}
+          height={64}
+          className="object-contain max-w-full max-h-full"
         />
       </div>
       <p className="text-xs text-center mt-1 text-white/80">{label}</p>

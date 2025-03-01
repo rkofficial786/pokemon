@@ -1,6 +1,6 @@
 import React from "react";
 import { ArrowsUpDownIcon, ScaleIcon } from "@heroicons/react/24/solid";
-import { formatId, formatName } from "@/app/helpers/helper";
+import { formatId, formatName } from "@/helpers/helper";
 import TypeBadges from "./type-badge";
 import InfoCard from "./info-card";
 import AbilitiesCard from "./abilities-card";

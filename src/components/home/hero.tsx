@@ -42,7 +42,7 @@ const Hero = () => {
 
             <Link href={"#featured"}>
               <button className="px-6 py-3 bg-gray-800 text-white rounded-full hover:bg-gray-700 transition-colors border border-gray-700">
-                Random Pokémon
+                Featured Pokémon
               </button>
             </Link>
           </div>

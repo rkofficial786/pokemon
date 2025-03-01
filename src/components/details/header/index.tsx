@@ -18,9 +18,9 @@ const PokemonDetailHeader: React.FC<PokemonDetailHeaderProps> = ({
 }) => {
   return (
     <div
-      className={`rounded-2xl overflow-hidden shadow-xl mb-8 ${typeColor.light}`}
+      className={`rounded-2xl  shadow-xl mb-8 ${typeColor.light}`}
     >
-      <div className="p-8 relative overflow-hidden">
+      <div className="p-8 relative ">
         <BackgroundPattern />
 
         <div className="grid md:grid-cols-2 gap-8 relative z-10">

@@ -1,5 +1,5 @@
 import React from "react";
-import { typeToColor } from "@/app/constants/colors";
+import { typeToColor } from "@/constants/colors";
 
 interface TypeBadgesProps {
   types: Array<{

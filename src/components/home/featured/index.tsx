@@ -6,45 +6,73 @@ import LoadingSkeleton from "./loading-skeleton";
 import FeaturedPokemonCard from "./card";
 
 import { Pokemon } from "@/types/pokemon";
-import { typeToColorFeatured } from "@/app/constants/colors";
+import { typeToColorFeatured } from "@/constants/colors";
 import { useAppDispatch } from "@/lib/hooks";
 import { getPokemonById } from "@/lib/features/pokemon";
 
 const Featured = () => {
   const dispatch = useAppDispatch();
-  const popularPokemonIds = [25, 6, 150, 149, 1];
+  const [randomPokemonIds, setRandomPokemonIds] = useState<number[]>([]);
 
   const [featuredPokemon, setFeaturedPokemon] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
+  // Generate 10 random Pokémon IDs between 1 and 1000
+  useEffect(() => {
+    const generateRandomIds = () => {
+      const ids: number[] = [];
+      while (ids.length < 10) {
+        const randomId = Math.floor(Math.random() * 1000) + 1;
+        if (!ids.includes(randomId)) {
+          ids.push(randomId);
+        }
+      }
+      return ids;
+    };
+
+    setRandomPokemonIds(generateRandomIds());
+  }, []);
+
   useEffect(() => {
     const fetchFeaturedPokemon = async () => {
+      if (randomPokemonIds.length === 0) return;
+      
       setIsLoading(true);
 
       try {
-        const pokemonPromises = popularPokemonIds.map(async (id) => {
-          const { payload: data } = await dispatch(getPokemonById(id));
+        const pokemonPromises = randomPokemonIds.map(async (id) => {
+          try {
+            const { payload: data } = await dispatch(getPokemonById(id));
+            
+            if (!data || !data.types || !data.types[0]) {
+              return null;
+            }
 
-          const mainType = data.types[0].type.name;
+            const mainType = data.types[0].type.name;
 
-          return {
-            id: data.id,
-            name: data.name,
-            type: data.types.map((t: any) => t.type.name).join("/"),
-            bgColor:
-              typeToColorFeatured[mainType] || "from-gray-500 to-gray-700",
-            sprite: data.sprites.other["official-artwork"].front_default,
-            stats: data.stats,
-            height: data.height,
-            weight: data.weight,
-            abilities: data.abilities.map((a: any) => a.ability.name),
-          };
+            return {
+              id: data.id,
+              name: data.name,
+              type: data.types.map((t: any) => t.type.name).join("/"),
+              bgColor:
+                typeToColorFeatured[mainType] || "from-gray-500 to-gray-700",
+              sprite: data.sprites?.other?.["official-artwork"]?.front_default || data.sprites?.front_default,
+              stats: data.stats,
+              height: data.height,
+              weight: data.weight,
+              abilities: data.abilities?.map((a: any) => a.ability.name) || [],
+            };
+          } catch (error) {
+            console.error(`Error fetching Pokémon ID ${id}:`, error);
+            return null;
+          }
         });
 
         const results = await Promise.all(pokemonPromises);
-        setFeaturedPokemon(results);
+        const validResults = results.filter(result => result !== null);
+        setFeaturedPokemon(validResults);
       } catch (error) {
         console.error("Error fetching featured Pokémon:", error);
       } finally {
@@ -53,7 +81,7 @@ const Featured = () => {
     };
 
     fetchFeaturedPokemon();
-  }, []);
+  }, [randomPokemonIds, dispatch]);
 
   useEffect(() => {
     if (featuredPokemon.length <= 1) return;
@@ -96,6 +124,19 @@ const Featured = () => {
               pokemon={featuredPokemon[currentIndex]}
               isTransitioning={isTransitioning}
             />
+            
+            <div className="flex justify-center mt-4 gap-2">
+              {featuredPokemon.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => handlePokemonChange(index)}
+                  className={`w-3 h-3 rounded-full ${
+                    index === currentIndex ? "bg-yellow-400" : "bg-gray-600"
+                  } transition-colors`}
+                  aria-label={`View Pokémon ${index + 1}`}
+                />
+              ))}
+            </div>
           </div>
         )}
       </div>

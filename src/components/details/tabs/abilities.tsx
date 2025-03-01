@@ -1,4 +1,4 @@
-import { formatName } from "@/app/helpers/helper";
+import { formatName } from "@/helpers/helper";
 import { AbilityInfo } from "@/types/pokemon";
 import React, { useState, useEffect } from "react";
 

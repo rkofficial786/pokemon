@@ -1,6 +1,6 @@
 
-import { typeToColor } from "@/app/constants/colors";
-import { formatName } from "@/app/helpers/helper";
+import { typeToColor } from "@/constants/colors";
+import { formatName } from "@/helpers/helper";
 import { MoveInfo } from "@/types/pokemon";
 import React, { useState, useEffect } from "react";
 

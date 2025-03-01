@@ -8,7 +8,7 @@ import { ArrowLeftIcon } from "@heroicons/react/24/solid";
 import LoadingSkeleton from "@/components/ui/loading-skeleton";
 import { ErrorMessage } from "@/components/details/error";
 import { PokemonNotFound } from "@/components/details/not-found";
-import { typeToColor } from "@/app/constants/colors";
+import { typeToColor } from "@/constants/colors";
 import DetailTabs from "@/components/details/tabs";
 import PokemonDetailHeader from "@/components/details/header";
 
@@ -73,7 +73,7 @@ const PokemonDetailPage = () => {
           className="flex items-center text-gray-300 hover:text-white mb-6 transition-colors cursor-pointer"
         >
           <ArrowLeftIcon className="w-5 h-5 mr-2" />
-          Back to Pokédex
+          Back to Pokémons
         </button>
 
         <div className="max-w-6xl mx-auto">
