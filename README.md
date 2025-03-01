@@ -2,7 +2,6 @@
 
 A visually stunning and highly optimized Pokémon exploration web application built with Next.js and powered by the PokeAPI.
 
-![Pokémon Explorer Banner](https://via.placeholder.com/1200x300/ffd700/000000?text=Pokemon+Explorer)
 
 Live Link: https://pokemon-two-mu.vercel.app/
 
@@ -11,7 +10,7 @@ Live Link: https://pokemon-two-mu.vercel.app/
 - **Framework**: [Next.js](https://nextjs.org/)
 - **Styling**: [TailwindCSS](https://tailwindcss.com/)
 - **Data Source**: [PokeAPI](https://pokeapi.co/)
-- **Deployment**: [Vercel](https://vercel.com/)
+- **Deployment**: [Vercel](https://pokemon-two-mu.vercel.app/)
 
 ## 🚀 Getting Started
 
